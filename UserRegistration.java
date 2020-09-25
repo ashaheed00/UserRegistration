@@ -32,8 +32,8 @@ public class UserRegistration {
 	}
 	
 	public boolean passwordValidate(String password) {
-		// Applying 1st rule - minimum 8 characters
-		Pattern pattern = Pattern.compile("^\\S{8,}$");
+		// Rule2 – Should have at least 1 Upper Case
+		Pattern pattern = Pattern.compile("^(?=.*[A-Z])+.{8,}$");
 		Matcher matcher = pattern.matcher(password);
 		return matcher.find();
 	}

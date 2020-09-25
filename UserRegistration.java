@@ -1,4 +1,4 @@
-// Version UC4
+// Version UC5
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -30,17 +30,24 @@ public class UserRegistration {
 		Matcher matcher = pattern.matcher(mobile);
 		return matcher.find();
 	}
+	
+	public boolean passwordValidate(String password) {
+		// Applying 1st rule - minimum 8 characters
+		Pattern pattern = Pattern.compile("^\\S{8,}$");
+		Matcher matcher = pattern.matcher(password);
+		return matcher.find();
+	}
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		UserRegistration userReg = new UserRegistration();
 
-		// Checking mobile number...
-		System.out.println("Enter mobile number: ");
-		if (userReg.mobileValidate(sc.nextLine().trim()))
-			System.out.println("Valid mobile number.");
+		// Checking password...
+		System.out.println("Enter password: ");
+		if (userReg.passwordValidate(sc.next()))
+			System.out.println("Valid password.");
 		else
-			System.out.println("Invalid mobile number.");
+			System.out.println("Invalid password.");
 
 		sc.close();
 	}

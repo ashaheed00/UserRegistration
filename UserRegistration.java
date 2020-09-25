@@ -1,4 +1,4 @@
-// Version UC3
+// Version UC4
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -19,9 +19,15 @@ public class UserRegistration {
 	}
 
 	public boolean emailValidate(String email) {
-		Pattern pattern = Pattern
-				.compile("^([a-z][0-9a-z_-]*)(.[a-z][0-9a-z_-]*)?@bl.co(.in)?$");
+		Pattern pattern = Pattern.compile("^([a-z][0-9a-z_-]*)(.[a-z][0-9a-z_-]*)?@bl.co(.in)?$");
 		Matcher matcher = pattern.matcher(email);
+		return matcher.find();
+	}
+
+	public boolean mobileValidate(String mobile) {
+		// assuming that the first mobile number digit shouldn't be 0
+		Pattern pattern = Pattern.compile("^\\d{2} [1-9]\\d{9}$");
+		Matcher matcher = pattern.matcher(mobile);
 		return matcher.find();
 	}
 
@@ -29,12 +35,12 @@ public class UserRegistration {
 		Scanner sc = new Scanner(System.in);
 		UserRegistration userReg = new UserRegistration();
 
-		// Checking email...
-		System.out.println("Enter your email: ");
-		if (userReg.emailValidate(sc.next()))
-			System.out.println("Valid email.");
+		// Checking mobile number...
+		System.out.println("Enter mobile number: ");
+		if (userReg.mobileValidate(sc.nextLine().trim()))
+			System.out.println("Valid mobile number.");
 		else
-			System.out.println("Invalid email.");
+			System.out.println("Invalid mobile number.");
 
 		sc.close();
 	}

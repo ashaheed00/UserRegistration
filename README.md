@@ -1,2 +1,2 @@
 # UserRegistration
-Version UC6
+Version UC7

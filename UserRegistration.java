@@ -1,4 +1,4 @@
-// Version UC5
+// Version UC7
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -32,8 +32,8 @@ public class UserRegistration {
 	}
 	
 	public boolean passwordValidate(String password) {
-		// Rule2 – Should have at least 1 Upper Case
-		Pattern pattern = Pattern.compile("^(?=.*[A-Z])+.{8,}$");
+		// Rule3 – Should have at least 1 digit
+		Pattern pattern = Pattern.compile("^(?=.*\\d)(?=.*[A-Z]).{8,}$");
 		Matcher matcher = pattern.matcher(password);
 		return matcher.find();
 	}

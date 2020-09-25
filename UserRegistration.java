@@ -1,4 +1,4 @@
-// Version UC2
+// Version UC3
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -11,24 +11,31 @@ public class UserRegistration {
 		Matcher matcher = pattern.matcher(fName);
 		return matcher.find();
 	}
-	
+
 	public boolean lastNameValidate(String lName) {
 		Pattern pattern = Pattern.compile("^([A-Z])\\w{2,}$");
 		Matcher matcher = pattern.matcher(lName);
 		return matcher.find();
 	}
 
+	public boolean emailValidate(String email) {
+		Pattern pattern = Pattern
+				.compile("^([a-z][0-9a-z_-]*)(.[a-z][0-9a-z_-]*)?@bl.co(.in)?$");
+		Matcher matcher = pattern.matcher(email);
+		return matcher.find();
+	}
+
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		UserRegistration userReg = new UserRegistration();
-		
-		// Checking last name...
-		System.out.println("Enter last name: ");
-		if (userReg.firstNameValidate(sc.next()))
-			System.out.println("Valid Last Name");
+
+		// Checking email...
+		System.out.println("Enter your email: ");
+		if (userReg.emailValidate(sc.next()))
+			System.out.println("Valid email.");
 		else
-			System.out.println("Invalid Last Name Format." + "\nLast name starts with Cap and has min 3 characters");
-		
+			System.out.println("Invalid email.");
+
 		sc.close();
 	}
 }

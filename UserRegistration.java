@@ -1,4 +1,4 @@
-// Version UC7
+// Version UC8
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -32,8 +32,8 @@ public class UserRegistration {
 	}
 	
 	public boolean passwordValidate(String password) {
-		// Rule3 – Should have at least 1 digit
-		Pattern pattern = Pattern.compile("^(?=.*\\d)(?=.*[A-Z]).{8,}$");
+		// Rule4 – has exactly one special character
+		Pattern pattern = Pattern.compile("^(?=.*\\d)(?=.*[A-Z])(?=.*\\W)(?!.*\\W\\w*\\W)(?!.*\s).{8,}$");
 		Matcher matcher = pattern.matcher(password);
 		return matcher.find();
 	}
@@ -43,8 +43,8 @@ public class UserRegistration {
 		UserRegistration userReg = new UserRegistration();
 
 		// Checking password...
-		System.out.println("Enter password: ");
-		if (userReg.passwordValidate(sc.next()))
+		System.out.println("Enter your password: ");
+		if (userReg.passwordValidate(sc.nextLine().trim()))
 			System.out.println("Valid password.");
 		else
 			System.out.println("Invalid password.");

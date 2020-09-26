@@ -1,4 +1,4 @@
-// Version UC8
+// Version UC9
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -19,7 +19,8 @@ public class UserRegistration {
 	}
 
 	public boolean emailValidate(String email) {
-		Pattern pattern = Pattern.compile("^([a-z][0-9a-z_-]*)(.[a-z][0-9a-z_-]*)?@bl.co(.in)?$");
+		// considering all test cases
+		Pattern pattern = Pattern.compile("^[a-z][0-9a-z_+-]*\\.?[0-9a-z_+-]+@\\w+(\\.[a-z]{2,}\\w*){1,2}$");
 		Matcher matcher = pattern.matcher(email);
 		return matcher.find();
 	}
@@ -30,10 +31,10 @@ public class UserRegistration {
 		Matcher matcher = pattern.matcher(mobile);
 		return matcher.find();
 	}
-	
+
 	public boolean passwordValidate(String password) {
 		// Rule4 – has exactly one special character
-		Pattern pattern = Pattern.compile("^(?=.*\\d)(?=.*[A-Z])(?=.*\\W)(?!.*\\W\\w*\\W)(?!.*\s).{8,}$");
+		Pattern pattern = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\\W)(?!.*\\W\\w*\\W)(?!.*\\s).{8,}$");
 		Matcher matcher = pattern.matcher(password);
 		return matcher.find();
 	}
@@ -42,12 +43,12 @@ public class UserRegistration {
 		Scanner sc = new Scanner(System.in);
 		UserRegistration userReg = new UserRegistration();
 
-		// Checking password...
-		System.out.println("Enter your password: ");
+		// Checking email...
+		System.out.println("Enter your email: ");
 		if (userReg.passwordValidate(sc.nextLine().trim()))
-			System.out.println("Valid password.");
+			System.out.println("Valid email.");
 		else
-			System.out.println("Invalid password.");
+			System.out.println("Invalid email.");
 
 		sc.close();
 	}

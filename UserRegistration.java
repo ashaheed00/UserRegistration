@@ -1,4 +1,4 @@
-// Version UC9
+// Version UC10
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -45,7 +45,7 @@ public class UserRegistration {
 
 		// Checking email...
 		System.out.println("Enter your email: ");
-		if (userReg.passwordValidate(sc.nextLine().trim()))
+		if (userReg.emailValidate(sc.nextLine().trim()))
 			System.out.println("Valid email.");
 		else
 			System.out.println("Invalid email.");

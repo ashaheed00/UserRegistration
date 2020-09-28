@@ -1,41 +1,63 @@
-// Version UC11
+// Version UC12
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserRegistration {
-
-	public boolean firstNameValidate(String fName) {
+	
+	// Patter for first and last name are exactly same. Hence a common method is created.
+	public boolean nameValidate(String name) throws UserDetailsException {
 		Pattern pattern = Pattern.compile("^([A-Z])\\w{2,}$");
-		Matcher matcher = pattern.matcher(fName);
-		return matcher.find();
+		try {
+			Matcher matcher = pattern.matcher(name);
+			if (matcher.find())
+				return true;
+			else
+				throw new UserDetailsException(UserDetailsException.ExceptionType.INVALID, "Invalid input.");
+		} catch (NullPointerException e) {
+			throw new UserDetailsException(UserDetailsException.ExceptionType.NULL, "Null input.");
+		}
 	}
 
-	public boolean lastNameValidate(String lName) {
-		Pattern pattern = Pattern.compile("^([A-Z])\\w{2,}$");
-		Matcher matcher = pattern.matcher(lName);
-		return matcher.find();
-	}
-
-	public boolean emailValidate(String email) {
-		// considering all test cases
+	public boolean emailValidate(String email) throws UserDetailsException {
 		Pattern pattern = Pattern.compile("^[a-z][0-9a-z_+-]*\\.?[0-9a-z_+-]+@\\w+(\\.[a-z]{2,}\\w*){1,2}$");
-		Matcher matcher = pattern.matcher(email);
-		return matcher.find();
+		try {
+			Matcher matcher = pattern.matcher(email);
+			if (matcher.find())
+				return matcher.find();
+			else
+				throw new UserDetailsException(UserDetailsException.ExceptionType.INVALID, "Invalid input.");
+		} catch (NullPointerException e) {
+			throw new UserDetailsException(UserDetailsException.ExceptionType.NULL, "Null input.");
+		}
 	}
 
-	public boolean mobileValidate(String mobile) {
+	public boolean mobileValidate(String mobile) throws UserDetailsException {
 		// assuming that the first mobile number digit shouldn't be 0
-		Pattern pattern = Pattern.compile("^\\d{2} [1-9]\\d{9}$");
-		Matcher matcher = pattern.matcher(mobile);
-		return matcher.find();
+		Pattern pattern = Pattern.compile("^\\d{2}\\s{1}[1-9]\\d{9}$");
+		try {
+			Matcher matcher = pattern.matcher(mobile);
+			if (matcher.find())
+				return matcher.find();
+			else
+				throw new UserDetailsException(UserDetailsException.ExceptionType.INVALID, "Invalid input.");
+		} catch (NullPointerException e) {
+			throw new UserDetailsException(UserDetailsException.ExceptionType.NULL, "Null input.");
+		}
 	}
 
-	public boolean passwordValidate(String password) {
-		// Rule4 – has exactly one special character
+	public boolean passwordValidate(String password) throws UserDetailsException {
+		// Rule4 password has exactly one special character
 		Pattern pattern = Pattern.compile("^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\\W)(?!.*\\W\\w*\\W)(?!.*\\s).{8,}$");
-		Matcher matcher = pattern.matcher(password);
-		return matcher.find();
+		try {
+			Matcher matcher = pattern.matcher(password);
+			if (matcher.find())
+				return matcher.find();
+			else
+				throw new UserDetailsException(UserDetailsException.ExceptionType.INVALID, "Invalid input.");
+		} catch (NullPointerException e) {
+			throw new UserDetailsException(UserDetailsException.ExceptionType.NULL, "Null input.");
+		}
 	}
 
 }

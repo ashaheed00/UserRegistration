@@ -1,5 +1,3 @@
-package com.bl.junit;
-
 import java.util.regex.Pattern;
 
 public class UserInputPatterns {

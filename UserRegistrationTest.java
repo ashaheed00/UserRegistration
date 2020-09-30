@@ -3,13 +3,19 @@
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Test;
 
 public class UserRegistrationTest {
+	private UserRegistration user;
+
+	@Before
+	public void initialize() {
+		user = new UserRegistration();
+	}
 
 	@Test
 	public void testNameValidate() throws UserDetailsException {
-		UserRegistration user = new UserRegistration2();
 		// Null check
 		try {
 			user.nameValidate(null);
@@ -35,7 +41,6 @@ public class UserRegistrationTest {
 
 	@Test
 	public void testEmailValidate() throws UserDetailsException {
-		UserRegistration user = new UserRegistration2();
 		// Null check
 		try {
 			user.emailValidate(null);
@@ -62,23 +67,21 @@ public class UserRegistrationTest {
 
 	@Test
 	public void testMobileValidate() throws UserDetailsException {
-		UserRegistration user = new UserRegistration2();
-
 		// Null check
 		try {
-			user.mobileValidate(null);
+			user.mobileNumberValidate(null);
 		} catch (UserDetailsException e) {
 			assertEquals(UserDetailsException.ExceptionType.NULL, e.exceptionType);
 		}
 		// Valid mobile numbers
 		String[] validMobileNumbers = { "91 9851605588", "92 6584122568" };
 		for (String mobileNumber : validMobileNumbers)
-			user.mobileValidate(mobileNumber);
+			user.mobileNumberValidate(mobileNumber);
 		// Invalid mobile numbers
 		String[] invalidEmails = { "9 9851256598", "91 67656415" };
 		for (String mobileNumber : invalidEmails) {
 			try {
-				user.mobileValidate(mobileNumber);
+				user.mobileNumberValidate(mobileNumber);
 			} catch (UserDetailsException e) {
 				assertEquals(UserDetailsException.ExceptionType.INVALID, e.exceptionType);
 			}
@@ -87,8 +90,6 @@ public class UserRegistrationTest {
 
 	@Test
 	public void testPasswordValidate() throws UserDetailsException {
-		UserRegistration user = new UserRegistration2();
-
 		// Null check
 		try {
 			user.passwordValidate(null);
